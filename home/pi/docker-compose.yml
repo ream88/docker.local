@@ -26,18 +26,21 @@ services:
   #   cap_add:
   #     - NET_ADMIN
   #   restart: unless-stopped
+
+  unifi-controller:
+    image: linuxserver/unifi-controller
+    container_name: unifi-controller
     environment:
-      TZ: "Europe/Vienna"
-      WEBPASSWORD: "password"
-    # Volumes store your data between container upgrades
-    volumes:
-       - "./etc-pihole/:/etc/pihole/"
-       - "./etc-dnsmasq.d/:/etc/dnsmasq.d/"
-    dns:
-      - 127.0.0.1
-      - 1.1.1.1
-    # Recommended but not required (DHCP needs NET_ADMIN)
-    #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
-    cap_add:
-      - NET_ADMIN
+      - PUID=1000
+      - PGID=1000
+      - MEM_LIMIT=1024M #optional
+    ports:
+      - 3478:3478/udp
+      - 10001:10001/udp
+      - 8080:8080
+      - 8081:8081
+      - 8443:8443
+      - 8843:8843
+      - 8880:8880
+      - 6789:6789
     restart: unless-stopped
