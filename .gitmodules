@@ -1,0 +1,3 @@
+[submodule "home/pi/unifi"]
+	path = home/pi/unifi
+	url = https://github.com/ream88/unifi

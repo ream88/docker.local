@@ -34,6 +34,9 @@ services:
       - PUID=1000
       - PGID=1000
       - MEM_LIMIT=1024M #optional
+    volumes:
+      - ./data:/config
+      - ./certs:/home/certs
     ports:
       - 3478:3478/udp
       - 10001:10001/udp

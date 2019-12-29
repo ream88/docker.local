@@ -4,6 +4,11 @@ This is the setup for my Raspberry Pi Zero W running on `raspberrypi.local`. At 
 moment its only purpose is running as a Docker host for various projects
 including:
 
+- [unifi](https://github.com/ream88/unifi)
+
+  UniFi Network Management Controller software for my UAP-AC-PROs.
+  Accessible at https://raspberrypi.local:8443
+
 ## Usage
 
 - Flash Raspbian Lite onto a Micro SD card.
