@@ -1,0 +1,1 @@
+0 0 * * * docker exec acme.sh --issue --dns dns_gandi_livedns -d docker.mariouher.com > /home/pi/cron.txt

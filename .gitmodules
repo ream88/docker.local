@@ -1,3 +1,6 @@
 [submodule "home/pi/unifi"]
 	path = home/pi/unifi
 	url = https://github.com/ream88/unifi
+[submodule "home/pi/acme.sh"]
+	path = home/pi/acme.sh
+	url = https://github.com/Neilpang/acme.sh
