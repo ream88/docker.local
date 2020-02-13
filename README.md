@@ -30,6 +30,23 @@ host for various projects including:
   is set so [Gandi DNS](https://github.com/Neilpang/acme.sh/wiki/dnsapi#18-use-gandi-livedns-api)
   is properly configured before running any certificate issue/renewal.
 
+- ### pi-hole
+
+  ```
+  docker run -itd \
+    --name pihole \
+    -p 53:53/tcp -p 53:53/udp \
+    -p 80:80 \
+    -p 443:443 \
+    -e TZ=Europe/Vienna \
+    -e VIRTUAL_HOST=docker.mariouher.com \
+    -v "$(pwd)/etc-pihole/":/etc/pihole/ \
+    -v "$(pwd)/etc-dnsmasq.d/":/etc/dnsmasq.d/ \
+    --dns=127.0.0.1 --dns=1.1.1.1 \
+    --restart=unless-stopped \
+    pihole/pihole:latest
+  ```
+
 - ### [unifi](https://github.com/ream88/unifi)
 
   UniFi Network Management Controller software for my UAP-AC-PROs.
