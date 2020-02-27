@@ -30,6 +30,21 @@ host for various projects including:
   is set so [Gandi DNS](https://github.com/Neilpang/acme.sh/wiki/dnsapi#18-use-gandi-livedns-api)
   is properly configured before running any certificate issue/renewal.
 
+- ### [homebridge](https://github.com/oznu/docker-homebridge)
+
+  ```
+  docker run -itd \
+    --net=host \
+    --name=homebridge \
+    -e PUID=1000 -e PGID=1000 \
+    -e TZ=Europe/Vienna \
+    -e HOMEBRIDGE_CONFIG_UI=1 \
+    -e HOMEBRIDGE_CONFIG_UI_PORT=8888 \
+    -v "$(pwd)/homebridge":/homebridge \
+    --restart unless-stopped \
+    oznu/homebridge
+  ```
+
 - ### pi-hole
 
   ```
