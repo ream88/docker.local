@@ -22,6 +22,14 @@ host for various services including:
     oznu/homebridge
   ```
 
+  Homebridge is used to make some appliances in my apartment HomeKit ready:
+
+  - Nuki Smart Lock using <https://github.com/ream88/homebridge-nuki-latch>.
+  - Two [ceiling lights](https://amzn.to/3iQLGHk) controlled using
+    [ESPHome](https://esphome.io)-powered [Sonoff Basic
+    Switches](https://amzn.to/3mHHUSV) using
+    <https://github.com/lucavb/homebridge-esphome-ts>.
+
 - ### pi-hole
 
   ```sh

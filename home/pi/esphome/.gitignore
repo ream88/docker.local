@@ -1,0 +1,3 @@
+.esphome/
+sonoff_*/
+secrets.yml
