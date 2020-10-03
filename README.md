@@ -36,16 +36,33 @@ host for various services including:
   docker run -itd \
     --name pihole \
     -p 53:53/tcp -p 53:53/udp \
-    -p 80:80 \
-    -p 443:443 \
     -e TZ=Europe/Vienna \
     -e VIRTUAL_HOST=docker.mariouher.com \
     -v "$(pwd)/etc-pihole/":/etc/pihole/ \
     -v "$(pwd)/etc-dnsmasq.d/":/etc/dnsmasq.d/ \
     --dns=127.0.0.1 --dns=1.1.1.1 \
-    --restart=unless-stopped \
+    --restart unless-stopped \
+    --network=bridge \
     pihole/pihole:latest
   ```
+
+- ### nginx
+
+  ```sh
+  docker run -itd \
+    --name nginx \
+    -p 80:80 \
+    -v "$(pwd)/nginx/nginx.conf:/etc/nginx/nginx.conf" \
+    -v "$(pwd)/nginx/html:/etc/nginx/html/index.html" \
+    --network=nginx \
+    --restart unless-stopped \
+    nginx
+  ```
+
+  Nginx is used to render a simple website at <http://docker.local>.
+
+  - <https://stackoverflow.com/a/38783433/326984>
+  - <https://github.com/ream88/nginx-test>
 
 ## Setup
 
