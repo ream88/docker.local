@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "scripts": {
+    "start": "parcel src/index.html",
+    "build": "parcel build src/index.html"
+  },
+  "author": "Mario Uher <uher.mario@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4",
+    "postcss-modules": "^3.2.2",
+    "tailwindcss": "^1.8.10"
+  }
+}

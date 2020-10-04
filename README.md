@@ -17,7 +17,7 @@ host for various services including:
     -e TZ=Europe/Vienna \
     -e HOMEBRIDGE_CONFIG_UI=1 \
     -e HOMEBRIDGE_CONFIG_UI_PORT=8888 \
-    -v "$(pwd)/homebridge":/homebridge \
+    -v "$HOME/homebridge":/homebridge \
     --restart unless-stopped \
     oznu/homebridge
   ```
@@ -38,8 +38,8 @@ host for various services including:
     -p 53:53/tcp -p 53:53/udp \
     -e TZ=Europe/Vienna \
     -e VIRTUAL_HOST=docker.mariouher.com \
-    -v "$(pwd)/etc-pihole/":/etc/pihole/ \
-    -v "$(pwd)/etc-dnsmasq.d/":/etc/dnsmasq.d/ \
+    -v "$HOME/etc-pihole/":/etc/pihole/ \
+    -v "$HOME/etc-dnsmasq.d/":/etc/dnsmasq.d/ \
     --dns=127.0.0.1 --dns=1.1.1.1 \
     --restart unless-stopped \
     --network=bridge \
@@ -52,8 +52,8 @@ host for various services including:
   docker run -itd \
     --name nginx \
     -p 80:80 \
-    -v "$(pwd)/nginx/nginx.conf:/etc/nginx/nginx.conf" \
-    -v "$(pwd)/nginx/html:/etc/nginx/html/index.html" \
+    -v "$HOME/nginx/nginx.conf:/etc/nginx/nginx.conf" \
+    -v "$HOME/nginx/dist:/etc/nginx/html" \
     --network=nginx \
     --restart unless-stopped \
     nginx
@@ -63,6 +63,23 @@ host for various services including:
 
   - <https://stackoverflow.com/a/38783433/326984>
   - <https://github.com/ream88/nginx-test>
+
+  Some useful commands during development:
+
+  ```sh
+  npm run build
+  rsync -r dist docker.local:/home/pi/nginx/
+  rsync nginx.conf docker.local:/home/pi/nginx/
+  ssh docker.local 'docker rm -f $(docker ps -qaf name=nginx)'
+  ssh docker.local 'docker run \
+      --name nginx \
+      -p 80:80 \
+      -v "$HOME/nginx/nginx.conf:/etc/nginx/nginx.conf" \
+      -v "$HOME/nginx/dist:/etc/nginx/html" \
+      --network=nginx \
+      nginx'
+  ```
+
 
 ## Setup
 
