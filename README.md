@@ -80,7 +80,6 @@ host for various services including:
       nginx'
   ```
 
-
 ## Setup
 
 - Download and flash [Raspbian Lite](https://www.raspberrypi.org/downloads/raspbian/) onto a Micro SD card with at least 8 GB.
