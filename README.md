@@ -7,7 +7,7 @@ host for various services including:
 
 ## Services
 
-- ### [homebridge](https://github.com/oznu/docker-homebridge)
+- ### [Homebridge](https://github.com/oznu/docker-homebridge)
 
   ```sh
   docker run -itd \
@@ -30,7 +30,7 @@ host for various services including:
     Switches](https://amzn.to/3mHHUSV) using
     <https://github.com/lucavb/homebridge-esphome-ts>.
 
-- ### pi-hole
+- ### [Pi-hole](https://pi-hole.net)
 
   ```sh
   docker run -itd \
@@ -46,7 +46,42 @@ host for various services including:
     pihole/pihole:latest
   ```
 
-- ### nginx
+- ### [Mosquitto](https://mosquitto.org)
+
+  ```sh
+  docker run -itd \
+    --name mosquitto \
+    -p 1883:1883 -p 9001:9001 \
+    --restart unless-stopped \
+    eclipse-mosquitto
+  ```
+
+  Enables together with
+  [homebridge-mqttthing](https://github.com/arachnetech/homebridge-mqttthing)
+  [my ESPHome powered Sonoff lamps](home/pi/esphome). The following JSON is the
+  config I used for the Fridge lamp:
+
+  ```json
+  {
+    "type": "lightbulb-OnOff",
+    "name": "Fridge",
+    "topics": {
+        "getOnline": "fridge/status",
+        "getOn": "fridge/switch/sonoff_lamp/state",
+        "setOn": "fridge/switch/sonoff_lamp/command"
+    },
+    "onlineValue": "online",
+    "offlineValue": "offline",
+    "retryLimit": 1,
+    "confirmationIndicateOffline": true,
+    "onValue": "ON",
+    "offValue": "OFF",
+    "accessory": "mqttthing"
+  }
+  ```
+
+
+- ### NGINX
 
   ```sh
   docker run -itd \

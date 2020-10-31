@@ -1,20 +1,25 @@
-<<: !include ./secrets.yml
-
 esphome:
-  name: sonoff_fridge
+  name: fridge
   platform: ESP8266
   board: esp8285
   arduino_version: 2.4.2
 
-# wifi is in secrets.yml
+wifi:
+  <<: !include ./secrets.yaml
+
+  fast_connect: true
+  manual_ip:
+    static_ip: 10.0.0.41
+    gateway: 10.0.0.1
+    subnet: 255.255.255.0
 
 # Enable logging
 logger:
 
-# Enable Home Assistant API
-api:
-
 ota:
+
+mqtt:
+  broker: 10.0.0.254
 
 binary_sensor:
   - platform: gpio
@@ -28,10 +33,10 @@ binary_sensor:
 
 switch:
   - platform: gpio
-    name: "Sonoff Fridge Lamp"
-    pin: GPIO12
     id: relay
-    restore_mode: RESTORE_DEFAULT_ON
+    name: "Sonoff Lamp"
+    pin: GPIO12
+    restore_mode: ALWAYS_ON
 
 status_led:
   pin:
