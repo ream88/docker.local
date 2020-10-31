@@ -30,22 +30,6 @@ host for various services including:
     Switches](https://amzn.to/3mHHUSV) using
     <https://github.com/arachnetech/homebridge-mqttthing>.
 
-- ### [Pi-hole](https://pi-hole.net)
-
-  ```sh
-  docker run -itd \
-    --name pihole \
-    -p 53:53/tcp -p 53:53/udp \
-    -e TZ=Europe/Vienna \
-    -e VIRTUAL_HOST=docker.mariouher.com \
-    -v "$HOME/etc-pihole/":/etc/pihole/ \
-    -v "$HOME/etc-dnsmasq.d/":/etc/dnsmasq.d/ \
-    --dns=127.0.0.1 --dns=1.1.1.1 \
-    --restart unless-stopped \
-    --network=bridge \
-    pihole/pihole:latest
-  ```
-
 - ### [Mosquitto](https://mosquitto.org)
 
   ```sh
@@ -78,6 +62,21 @@ host for various services including:
   }
   ```
 
+- ### [Pi-hole](https://pi-hole.net)
+
+  ```sh
+  docker run -itd \
+    --name pihole \
+    -p 53:53/tcp -p 53:53/udp \
+    -e TZ=Europe/Vienna \
+    -e VIRTUAL_HOST=docker.mariouher.com \
+    -v "$HOME/etc-pihole/":/etc/pihole/ \
+    -v "$HOME/etc-dnsmasq.d/":/etc/dnsmasq.d/ \
+    --dns=127.0.0.1 --dns=1.1.1.1 \
+    --restart unless-stopped \
+    --network=bridge \
+    pihole/pihole:latest
+  ```
 
 - ### NGINX
 
