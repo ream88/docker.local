@@ -28,7 +28,7 @@ host for various services including:
   - Two [ceiling lights](https://amzn.to/3iQLGHk) controlled using
     [ESPHome](https://esphome.io)-powered [Sonoff Basic
     Switches](https://amzn.to/3mHHUSV) using
-    <https://github.com/lucavb/homebridge-esphome-ts>.
+    <https://github.com/arachnetech/homebridge-mqttthing>.
 
 - ### [Pi-hole](https://pi-hole.net)
 
@@ -56,10 +56,8 @@ host for various services including:
     eclipse-mosquitto
   ```
 
-  Enables together with
-  [homebridge-mqttthing](https://github.com/arachnetech/homebridge-mqttthing)
-  [my ESPHome powered Sonoff lamps](home/pi/esphome). The following JSON is the
-  config I used for the Fridge lamp:
+  Mosquitto is used to communitcate with my Sonoff powered lamps via MQTT. The following JSON is the
+  config I used in homebridge-ui for one of lamps:
 
   ```json
   {
