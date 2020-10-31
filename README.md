@@ -47,6 +47,7 @@ host for various services including:
   {
     "type": "lightbulb-OnOff",
     "name": "Fridge",
+    "url": "http://10.0.0.254:1883",
     "topics": {
         "getOnline": "fridge/status",
         "getOn": "fridge/switch/sonoff_lamp/state",
@@ -54,7 +55,7 @@ host for various services including:
     },
     "onlineValue": "online",
     "offlineValue": "offline",
-    "retryLimit": 1,
+    "retryLimit": 3,
     "confirmationIndicateOffline": true,
     "onValue": "ON",
     "offValue": "OFF",
