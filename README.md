@@ -40,8 +40,8 @@ host for various services including:
     eclipse-mosquitto
   ```
 
-  Mosquitto is used to communitcate with my Sonoff powered lamps via MQTT. The following JSON is the
-  config I used in homebridge-ui for one of lamps:
+  Mosquitto is used to communicate with my Sonoff powered lamps via MQTT. The
+  following JSON is the config I used in homebridge-ui for one of the lamps:
 
   ```json
   {
