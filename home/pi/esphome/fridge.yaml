@@ -8,6 +8,7 @@ wifi:
   <<: !include ./secrets.yaml
 
   fast_connect: true
+  power_save_mode: none
   manual_ip:
     static_ip: 10.0.0.41
     gateway: 10.0.0.1
