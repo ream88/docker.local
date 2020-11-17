@@ -83,7 +83,7 @@ host for various services including:
   
   ```sh
   docker network connect nginx pihole
-  
+  ```
 
 - ### NGINX
 
