@@ -78,6 +78,12 @@ host for various services including:
     --network=bridge \
     pihole/pihole:latest
   ```
+  
+  Also don't forget to connect the `pihole` container to the `nginx` network:
+  
+  ```sh
+  docker network connect nginx pihole
+  
 
 - ### NGINX
 
