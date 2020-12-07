@@ -70,7 +70,7 @@ host for various services including:
     --name pihole \
     -p 53:53/tcp -p 53:53/udp \
     -e TZ=Europe/Vienna \
-    -e VIRTUAL_HOST=docker.mariouher.com \
+    -e VIRTUAL_HOST=docker.local \
     -v "$HOME/etc-pihole/":/etc/pihole/ \
     -v "$HOME/etc-dnsmasq.d/":/etc/dnsmasq.d/ \
     --dns=127.0.0.1 --dns=1.1.1.1 \
