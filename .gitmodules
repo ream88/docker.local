@@ -1,0 +1,3 @@
+[submodule "home/pi/esphome"]
+	path = home/pi/esphome
+	url = https://github.com/ream88/esphome-sonoff-lights
