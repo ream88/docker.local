@@ -11,15 +11,15 @@ host for various services including:
 
   ```sh
   docker run -itd \
-    --net=host \
     --name=homebridge \
-    -e PUID=1000 \
-    -e PGID=1000 \
-    -e TZ=Europe/Vienna \
+    --network=host \
+    --restart unless-stopped \
     -e HOMEBRIDGE_CONFIG_UI=1 \
     -e HOMEBRIDGE_CONFIG_UI_PORT=8888 \
+    -e PGID=1000 \
+    -e PUID=1000 \
+    -e TZ=Europe/Vienna \
     -v "$HOME/homebridge":/homebridge \
-    --restart unless-stopped \
     oznu/homebridge
   ```
 
@@ -35,10 +35,10 @@ host for various services including:
 
   ```sh
   docker run -itd \
-    --name mosquitto \
+    --name=mosquitto \
+    --restart unless-stopped \
     -p 1883:1883 \
     -p 9001:9001 \
-    --restart unless-stopped \
     eclipse-mosquitto
   ```
 
@@ -69,17 +69,17 @@ host for various services including:
 
   ```sh
   docker run -itd \
-    --name pihole \
-    -p 53:53/tcp \
-    -p 53:53/udp \
+    --dns=1.1.1.1 \
+    --dns=127.0.0.1 \
+    --name=pihole \
+    --network=bridge \
+    --restart unless-stopped \
     -e TZ=Europe/Vienna \
     -e VIRTUAL_HOST=docker.local \
-    -v "$HOME/etc-pihole/":/etc/pihole/ \
+    -p 53:53/tcp \
+    -p 53:53/udp \
     -v "$HOME/etc-dnsmasq.d/":/etc/dnsmasq.d/ \
-    --dns=127.0.0.1 \
-    --dns=1.1.1.1 \
-    --restart unless-stopped \
-    --network=bridge \
+    -v "$HOME/etc-pihole/":/etc/pihole/ \
     pihole/pihole:latest
   ```
 
@@ -101,12 +101,12 @@ host for various services including:
 
   ```sh
   docker run -itd \
-    --name nginx \
-    -p 80:80 \
-    -v "$HOME/nginx/nginx.conf:/etc/nginx/nginx.conf" \
-    -v "$HOME/nginx/dist:/etc/nginx/html" \
+    --name=nginx \
     --network=nginx \
     --restart unless-stopped \
+    -p 80:80 \
+    -v "$HOME/nginx/dist:/etc/nginx/html" \
+    -v "$HOME/nginx/nginx.conf:/etc/nginx/nginx.conf" \
     nginx
   ```
 
@@ -123,11 +123,11 @@ host for various services including:
   rsync nginx.conf docker.local:/home/pi/nginx/
   ssh docker.local 'docker rm -f $(docker ps -qaf name=nginx)'
   ssh docker.local 'docker run \
-      --name nginx \
-      -p 80:80 \
-      -v "$HOME/nginx/nginx.conf:/etc/nginx/nginx.conf" \
-      -v "$HOME/nginx/dist:/etc/nginx/html" \
+      --name=nginx \
       --network=nginx \
+      -p 80:80 \
+      -v "$HOME/nginx/dist:/etc/nginx/html" \
+      -v "$HOME/nginx/nginx.conf:/etc/nginx/nginx.conf" \
       nginx'
   ```
 
