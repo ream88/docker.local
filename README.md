@@ -7,6 +7,22 @@ host for various services including:
 
 ## Services
 
+- ### [Tailscale](https://tailscale.com)
+
+  ```sh
+  docker run -d \
+  --cap-add=NET_ADMIN \
+  --cap-add=NET_RAW \
+  --name=tailscaled \
+  --network=host \
+  --restart unless-stopped \
+  -e TS_AUTHKEY=tskey-auth-xxxxxxxxxxxxxxxx \
+  -e TS_ROUTES=10.0.0.0/24 \
+  -v /dev/net/tun:/dev/net/tun \
+  -v /var/lib:/var/lib \
+  tailscale/tailscale
+  ```
+
 - ### [Homebridge](https://github.com/oznu/docker-homebridge)
 
   ```sh
