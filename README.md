@@ -10,13 +10,15 @@ host for various services including:
 - ### [Tailscale](https://tailscale.com)
 
   ```sh
+  # export TS_AUTHKEY=tskey-auth-xxxxxxxxxxxxxxxx
+  
   docker run -d \
   --cap-add=NET_ADMIN \
   --cap-add=NET_RAW \
   --name=tailscaled \
   --network=host \
   --restart unless-stopped \
-  -e TS_AUTHKEY=tskey-auth-xxxxxxxxxxxxxxxx \
+  -e TS_AUTHKEY \
   -e TS_ROUTES=10.0.0.0/24 \
   -v /dev/net/tun:/dev/net/tun \
   -v /var/lib:/var/lib \
