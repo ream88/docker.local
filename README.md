@@ -11,15 +11,16 @@ host for various services including:
 
   ```sh
   # export TS_AUTHKEY=tskey-auth-xxxxxxxxxxxxxxxx
-  
+
   docker run -d \
   --cap-add=NET_ADMIN \
   --cap-add=NET_RAW \
-  --name=tailscaled \
+  --name=tailscale \
   --network=host \
   --restart unless-stopped \
   -e TS_AUTHKEY \
   -e TS_ROUTES=10.0.0.0/24 \
+  -e TS_EXTRA_ARGS="--advertise-exit-node" \
   -v /dev/net/tun:/dev/net/tun \
   -v /var/lib:/var/lib \
   tailscale/tailscale
