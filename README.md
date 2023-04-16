@@ -1,9 +1,8 @@
 # docker.local
 
-This is the setup for my Raspberry Pi ~~Zero W~~ 3B (turns out the ARMv6
-architecture is not supported by [LinuxServer](https://linuxserver.io) anymore)
-running on `docker.local`. At the moment its only purpose is running as a Docker
-host for various services including:
+The following configuration is for my Raspberry Pi 3B, which operates on
+`docker.local`. Currently, its primary function is to serve as a Docker host for
+a range of services, which include:
 
 ## Services
 
@@ -42,7 +41,7 @@ host for various services including:
     oznu/homebridge
   ```
 
-  Homebridge is used to make some appliances in my apartment HomeKit ready:
+  Homebridge is used to enable several appliances in my apartment to be compatible with HomeKit:
 
   - Nuki Smart Lock using <https://github.com/ream88/homebridge-nuki-latch>.
   - Two [ceiling lights](https://amzn.to/3iQLGHk) controlled using
@@ -61,8 +60,8 @@ host for various services including:
     eclipse-mosquitto
   ```
 
-  Mosquitto is used to communicate with my Sonoff powered lamps via MQTT. The
-  following JSON is the config I used in homebridge-ui for one of the lamps:
+  Mosquitto helps connect with my Sonoff lamps using MQTT. Here's the JSON setup
+  I used in Homebridge-UI for the lamps:
 
   ```json
   {
