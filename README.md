@@ -136,11 +136,11 @@ a range of services, which include:
   Some useful commands during development:
 
   ```sh
-  npm run build
+  make
   rsync -r dist docker.local:/home/pi/nginx/
   rsync nginx.conf docker.local:/home/pi/nginx/
   ssh docker.local 'docker rm -f $(docker ps -qaf name=nginx)'
-  ssh docker.local 'docker run \
+  ssh docker.local 'docker run -itd \
       --name=nginx \
       --network=nginx \
       -p 80:80 \
