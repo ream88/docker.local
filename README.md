@@ -44,6 +44,10 @@ a range of services, which include:
   Homebridge is used to enable several appliances in my apartment to be compatible with HomeKit:
 
   - Nuki Smart Lock using <https://github.com/ream88/homebridge-nuki-latch>.
+  - Two [ceiling lights](https://amzn.to/3iQLGHk) controlled using
+    [ESPHome](https://esphome.io)-powered [Sonoff Basic
+    Switches](https://amzn.to/3mHHUSV) using
+    <https://github.com/arachnetech/homebridge-mqttthing>.
 
 - ### [Mosquitto](https://mosquitto.org)
 
@@ -56,7 +60,28 @@ a range of services, which include:
     eclipse-mosquitto
   ```
 
-  Mosquitto was used to connect to my Sonoff-powered lamps using MQTT. Nowadays a [custom](https://github.com/ream88/arduino-homekit-sonoff-lights) [Arduino-based](https://github.com/Mixiaoxiao/Arduino-HomeKit-ESP8266) firmware connects them directly to HomeKit.
+  Mosquitto helps connect with my Sonoff lamps using MQTT. Here's the JSON setup
+  I used in Homebridge-UI for the lamps:
+
+  ```json
+  {
+    "type": "lightbulb-OnOff",
+    "name": "Fridge",
+    "url": "http://10.0.0.254:1883",
+    "topics": {
+        "getOnline": "fridge/status",
+        "getOn": "fridge/switch/sonoff_lamp/state",
+        "setOn": "fridge/switch/sonoff_lamp/command"
+    },
+    "onlineValue": "online",
+    "offlineValue": "offline",
+    "retryLimit": 3,
+    "confirmationIndicateOffline": true,
+    "onValue": "ON",
+    "offValue": "OFF",
+    "accessory": "mqttthing"
+  }
+  ```
 
 - ### [Pi-hole](https://pi-hole.net)
 
