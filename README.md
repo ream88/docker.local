@@ -94,6 +94,7 @@ a range of services, which include:
     --restart unless-stopped \
     -e TZ=Europe/Vienna \
     -e VIRTUAL_HOST=docker.local \
+    -e WEBPASSWORD=password \
     -p 53:53/tcp \
     -p 53:53/udp \
     -v "$HOME/etc-dnsmasq.d/":/etc/dnsmasq.d/ \
