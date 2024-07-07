@@ -86,6 +86,8 @@ a range of services, which include:
 - ### [Pi-hole](https://pi-hole.net)
 
   ```sh
+  # export WEBPASSWORD=password
+  
   docker run -itd \
     --dns=1.1.1.1 \
     --dns=127.0.0.1 \
@@ -94,7 +96,7 @@ a range of services, which include:
     --restart unless-stopped \
     -e TZ=Europe/Vienna \
     -e VIRTUAL_HOST=docker.local \
-    -e WEBPASSWORD=password \
+    -e WEBPASSWORD \
     -p 53:53/tcp \
     -p 53:53/udp \
     -v "$HOME/etc-dnsmasq.d/":/etc/dnsmasq.d/ \
