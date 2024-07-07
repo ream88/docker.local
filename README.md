@@ -16,7 +16,7 @@ a range of services, which include:
   --cap-add=NET_RAW \
   --name=tailscale \
   --network=host \
-  --rm \
+  --restart unless-stopped \
   -e TS_AUTHKEY \
   -e TS_ROUTES=10.0.0.0/24 \
   -e TS_EXTRA_ARGS="--advertise-exit-node" \
