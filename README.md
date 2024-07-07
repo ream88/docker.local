@@ -57,6 +57,7 @@ a range of services, which include:
     --restart unless-stopped \
     -p 1883:1883 \
     -p 9001:9001 \
+    -v "$HOME/mosquitto/mosquitto.conf:"/mosquitto/config/mosquitto.conf \
     eclipse-mosquitto
   ```
 
