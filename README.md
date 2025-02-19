@@ -87,28 +87,19 @@ a range of services, which include:
 - ### [Pi-hole](https://pi-hole.net)
 
   ```sh
-  # export WEBPASSWORD=password
-  
   docker run -itd \
     --dns=1.1.1.1 \
-    --dns=127.0.0.1 \
+    --dns=8.8.4.4 \
+    --dns=8.8.8.8 \
     --name=pihole \
-    --network=bridge \
+    --network=host \
     --restart unless-stopped \
+    -e FTLCONF_webserver_port=8889 \
     -e TZ=Europe/Vienna \
     -e VIRTUAL_HOST=docker.local \
-    -e WEBPASSWORD \
-    -p 53:53/tcp \
-    -p 53:53/udp \
     -v "$HOME/etc-dnsmasq.d/":/etc/dnsmasq.d/ \
     -v "$HOME/etc-pihole/":/etc/pihole/ \
     pihole/pihole:latest
-  ```
-
-  Also don't forget to connect the `pihole` container to the `nginx` network:
-
-  ```sh
-  docker network connect nginx pihole
   ```
 
   Updating can be done by running the following commands, followed by running
@@ -119,14 +110,19 @@ a range of services, which include:
   docker rm -f pihole
   ```
 
+  The password for the Pi-hole admin interface can be set/unset via:
+
+  ```sh
+  docker exec -it pihole sudo pihole setpassword
+  ```
+
 - ### NGINX
 
   ```sh
   docker run -itd \
     --name=nginx \
-    --network=nginx \
+    --network=host \
     --restart unless-stopped \
-    -p 80:80 \
     -v "$HOME/nginx/dist:/etc/nginx/html" \
     -v "$HOME/nginx/nginx.conf:/etc/nginx/nginx.conf" \
     nginx
@@ -141,13 +137,12 @@ a range of services, which include:
 
   ```sh
   make
-  rsync -r dist docker.local:/home/pi/nginx/
-  rsync nginx.conf docker.local:/home/pi/nginx/
+  rsync -vr dist docker.local:/home/pi/nginx/
+  rsync -v nginx.conf docker.local:/home/pi/nginx/
   ssh docker.local 'docker rm -f $(docker ps -qaf name=nginx)'
   ssh docker.local 'docker run -itd \
       --name=nginx \
-      --network=nginx \
-      -p 80:80 \
+      --network=host \
       -v "$HOME/nginx/dist:/etc/nginx/html" \
       -v "$HOME/nginx/nginx.conf:/etc/nginx/nginx.conf" \
       nginx'
