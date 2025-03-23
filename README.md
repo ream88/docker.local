@@ -25,20 +25,16 @@ a range of services, which include:
   tailscale/tailscale
   ```
 
-- ### [Homebridge](https://github.com/oznu/docker-homebridge)
+- ### [Homebridge](https://github.com/homebridge/docker-homebridge)
 
   ```sh
   docker run -itd \
     --name=homebridge \
     --network=host \
     --restart unless-stopped \
-    -e HOMEBRIDGE_CONFIG_UI=1 \
-    -e HOMEBRIDGE_CONFIG_UI_PORT=8888 \
-    -e PGID=1000 \
-    -e PUID=1000 \
     -e TZ=Europe/Vienna \
     -v "$HOME/homebridge":/homebridge \
-    oznu/homebridge
+    homebridge/homebridge
   ```
 
   Homebridge is used to enable several appliances in my apartment to be compatible with HomeKit:
