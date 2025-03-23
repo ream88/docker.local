@@ -43,7 +43,6 @@ a range of services, which include:
 
   Homebridge is used to enable several appliances in my apartment to be compatible with HomeKit:
 
-  - Nuki Smart Lock using <https://github.com/ream88/homebridge-nuki-latch>.
   - Two [ceiling lights](https://amzn.to/3iQLGHk) controlled using
     [ESPHome](https://esphome.io)-powered [Sonoff Basic
     Switches](https://amzn.to/3mHHUSV) using
@@ -80,6 +79,31 @@ a range of services, which include:
     "confirmationIndicateOffline": true,
     "onValue": "ON",
     "offValue": "OFF",
+    "accessory": "mqttthing"
+  }
+  ```
+
+  Here is the configuration to add latch functionality to the Nuki Smart Lock Pro (5th generation):
+
+  ```json
+  {
+    "type": "switch",
+    "name": "Türöffner",
+    "topics": {
+      "getOnline": "nuki/4529E16F/connected",
+      "getOn": "nuki/4529E16F/state",
+      "setOn": "nuki/4529E16F/lockAction"
+    },
+    "onlineValue": "true",
+    "offlineValue": "false",
+    "integerValue": true,
+    "onValue": "3",
+    "offValue": "1",
+    "resetStateAfterms": 3,
+    "manufacturer": "Nuki",
+    "model": "Smart Lock Pro",
+    "serialNumber": "4529E16F",
+    "firmwareRevision": "1.2.0",
     "accessory": "mqttthing"
   }
   ```
