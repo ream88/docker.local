@@ -163,6 +163,7 @@ a range of services, which include:
   ssh docker.local 'docker run -itd \
       --name=nginx \
       --network=host \
+      --restart unless-stopped \
       -v "$HOME/nginx/dist:/etc/nginx/html" \
       -v "$HOME/nginx/nginx.conf:/etc/nginx/nginx.conf" \
       nginx'
