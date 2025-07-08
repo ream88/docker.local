@@ -169,6 +169,19 @@ a range of services, which include:
       nginx'
   ```
 
+- ### [WatchYourLan](https://github.com/aceberg/WatchYourLAN)
+
+  ```sh
+  docker run \
+    --name wyl \
+    --network=host \
+    --restart unless-stopped \
+    -e IFACES="eth0 wlan0" \
+    -e TZ=Europe/Vienna \
+    -v watchyourlan:/data/WatchYourLAN \
+    aceberg/watchyourlan
+  ```
+
 ## Setup
 
 - Download and flash [Raspbian Lite](https://www.raspberrypi.org/downloads/raspbian/) onto a Micro SD card with at least 8 GB.
