@@ -8,7 +8,7 @@ Ubuntu 25.10.
 
 - ### [Tailscale](https://tailscale.com)
 
-  Requires a `TS_AUTHKEY` environment variable to be set before starting:
+  Requires a [Tailscale Key](https://console.tailscale.com/admin/settings/keys) to be set before starting:
 
   ```sh
   export TS_AUTHKEY=tskey-auth-xxxxxxxxxxxxxxxx
