@@ -133,6 +133,14 @@ Ubuntu 25.10.
    docker compose up -d
    ```
 
+## Update
+
+```sh
+cd ~/docker
+docker compose pull
+docker compose up -d
+```
+
 ## Links
 
 - <https://docs.docker.com/compose/>
